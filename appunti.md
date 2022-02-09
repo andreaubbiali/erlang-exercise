@@ -14,3 +14,6 @@ Attenzione:
 ### Other
 regs().         -> ritorna tutti i processi attivi in erlang
 
+### Errors
+when you monitor a process and it crash it send an error message to the monitor. The message is of type:
+    {'DOWN', _, process, Pid, _} 
