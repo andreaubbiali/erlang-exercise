@@ -17,3 +17,10 @@ regs().         -> ritorna tutti i processi attivi in erlang
 ### Errors
 when you monitor a process and it crash it send an error message to the monitor. The message is of type:
     {'DOWN', _, process, Pid, _} 
+
+## Good examples
+
+For a good example take a look to examRitirato.
+
+Rircorda di utilizzare la libreria erlang standard per fare register in modo tale da poter fare l'unregister.
+Vedi l'esempio che ho fatto bene in examRitirato.
