@@ -1,18 +1,41 @@
 -module(prova).
--export([start/0, sendMessage/0, printa/0]).
+-export([start/0, sendMessage/0]).
 
-start() ->  spawn('second@aubbiali', prova, printa, []).
+start() -> io:fwrite("cookies: ~p~n", [net_kernel:connect_node('node2@aubbiali')]),
+    % {second, 'node2@aubbiali'}!{hello}.
+    spawn(node(), fun() -> start_second() end).
+    % io:fwrite("dove è: ~p ~p~n", [PidSecond, self()]),
+    % io:fwrite("dove è: ~p~n", [whereis(second)]).
+    %{PidSecond, 'node2@aubbiali'}!{hello}.
+    %register(aaa, PidSecond).
 
-sendMessage()-> {'second@aubbiali',second}!{hello, self()}.
+sendMessage()-> io:fwrite("dove è: ~p~n", [whereis(secondProcess)]).
 
 
-printa() -> 
-    fun()->
-        io:fwrite("parte"),
-        register(second, self()),
-        receive
+% start_second() -> Pid = spawn(fun()-> start() end),
+%                 register(second, Pid),
+%                     io:fwrite("AAAAAAAAAAAA   ~p ~n",[Pid]).
 
-            {hello, OtherShell}       -> OtherShell!io:fwrite("arrivato ~n")
+start_second() -> 
+    io:fwrite("AAAAAAAAAAAA   ~p ~n",[self()]),
+    receive
 
-        end
-end.
+        {hello}       -> io:fwrite("arrivato ~n")
+    end.
+
+% 
+% erl -sname node2 -setcookie 'abc'
+% erl -sname node1 -setcookie 'abc'
+
+% In each of terminal to make the code work you have to compile the code.
+% this is because the two nodes must have the code loaded to use it (you can compile the modules in each terminal or use a erl instruction idk which is). 
+
+% fai partire un nodo e mandagli messagi, quando gli arriva qualcosa deve stampare ciò che gli arriva nel suo terminale
+% quello che vorrei quindi fare è:
+% start node1
+% start node2
+
+% node1 manda un messaggio a node2
+% node2 stampa sul suo terminale quello che è arrivato
+
+% problema che non riesco a far stampare node2 nel suo termnale, probabilmente non si può.
