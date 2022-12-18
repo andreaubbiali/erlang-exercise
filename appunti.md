@@ -24,3 +24,5 @@ For a good example take a look to examRitirato.
 
 Rircorda di utilizzare la libreria erlang standard per fare register in modo tale da poter fare l'unregister.
 Vedi l'esempio che ho fatto bene in examRitirato.
+
+- vedi esempio in preparation_midterm/distributed_associative_store
