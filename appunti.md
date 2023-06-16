@@ -26,3 +26,27 @@ Rircorda di utilizzare la libreria erlang standard per fare register in modo tal
 Vedi l'esempio che ho fatto bene in examRitirato.
 
 - vedi esempio in preparation_midterm/distributed_associative_store
+
+# FROM FLOAT TO INT
+
+round(3.0).
+trunc(3.0)
+
+### WORK WITH INTEGER NUMBER
+- remainder of integer number
+```
+5 rem 4
+```
+- division of integer number
+```
+5 div 4
+```
+
+### isprime using case
+
+is_prime(_, 1) -> true;
+is_prime(Num, Div) ->
+    case (Num rem Div) =:= 0 of
+        true -> false;
+        _ -> isPrime(Num, Div-1)
+    end.
